@@ -4,13 +4,21 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "NODE_ENV=development nodemon app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.19.0",
     "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "google-auth-library": "^4.2.5",
+    "mongodb": "^3.2.7",
+    "mongoose": "^5.6.4"
+  },
+  "devDependencies": {
+    "dotenv": "^8.0.0"
   }
 }
