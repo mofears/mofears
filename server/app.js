@@ -8,6 +8,8 @@ const app = express();
 const port = process.env.PORT || 3000
 const errorHandlers = require('./middlewares/error-handlers');
 const youtubeApi = require('./routes/youtube');
+// const youtubeApi =
+const omdbApi = require('./routes/omdb') 
 
 // mongoose.connect('mongodb://localhost/HacktivGit', { useNewUrlParser: true })
 
@@ -17,5 +19,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(errorHandlers)
 
 app.use('/api/youtube', youtubeApi)
+
+app.use("/omdb", omdbApi)
 
 app.listen(port, () => console.log('Running on port', port))
