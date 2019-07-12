@@ -6,12 +6,15 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <body>
-  <nav>
-    <div class="nav-wrapper">
-      <form>
+  <nav style="background-color: #145374">
+    <a href="#" class="brand-logo" style="padding-left: 20px">Mofears</a>
+    <div class="nav-wrapper" style="padding-left: 725px">
+      <form style="background-color: #5588a3">
         <div class="input-field">
           <input id="search" type="search" required>
           <label class="label-icon" for="search" id="click"><i class="material-icons">search</i></label>
@@ -20,11 +23,26 @@
       </form>
     </div>
   </nav>
-  <br>
-  <br>
 
-  <!-- trailer video -->
-  <div id="player"></div>
+  <div class="row" style="padding-top: 20px; height: 500px">
+    <div class="col-sm-5" style="border: 1px solid black">
+
+    </div>
+    <div class="col-sm-7" style="border: 1px solid black; text-align: center;">
+      <ul class="list-group">
+        <!-- trailer video -->
+        <div class="container" style="padding-top: 20px; padding-bottom: 20px">
+          <li class="list-group-item">
+            <h3>Trailer & Soundtrack</h3>
+          </li>
+          <li class="list-group-item">
+            <div id="player"></div>
+          </li>
+        </div>
+      </ul>
+    </div>
+  </div>
+
 </body>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
