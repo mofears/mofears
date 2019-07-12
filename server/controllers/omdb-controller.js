@@ -57,6 +57,29 @@ class OmdbController{
             })
         })
     }
+    static search(req, res){
+        const find = req.query.title
+        mov.get(`/3/movie/${id_movie}/similar?api_key=${process.env.MOVIE_APIKEY}&language=en-US&page=1`)
+        .then(function ({ data }) {
+            if(!find){
+                throw new Error
+            }else{
+                for (let i = 0; i < data.results.length; i++) {
+                    if(data.results[i].title.toLowerCase().includes(find.toLowerCase())){
+                        res.status(200).json(data.results[i])
+                    }
+                }
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+            res.status(404).json({
+                message: 'Not Found!',
+                resource: 'controller omdb searchMovie!!!',
+                data: error
+            })
+        })
+    }
 }
 
 module.exports = OmdbController
