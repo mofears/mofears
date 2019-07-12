@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="google-signin-client_id"
+    content="800616839115-v04olo2jcipsoicrkasli0lpd603qnsn.apps.googleusercontent.com">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>Mofears</title>
+</head>
+
+<body>
+
+  <nav style="background-color: #145374">
+    <a href="#" class="brand-logo" style="padding-left: 20px">Mofears</a>
+    <div class="nav-wrapper" style="padding-left: 725px">
+      <form style="background-color: #5588a3">
+        <div class="input-field">
+          <input id="search" type="search" required>
+          <label class="label-icon" for="search" id="click"><i class="material-icons">search</i></label>
+          <i class="material-icons">close</i>
+  </nav>
+  <div class="container">
+      <!-- Button Login -->
+      <div class="g-signin2" data-onsuccess="onSignIn"></div>
+      <a href="#" onclick="signOut();">Sign out</a>
+    </div>
+  
+  <!-- seach movie -->
+  <div class="container">
+    <input id="searchMovie" type="text" class="form-control" placeholder="search by movie name">
+    <button class="btn btn-sm btn-outline-info" type="submit" id="btnSearch">Search</button>
+  </div>
+
+  <div class="container" id="detail">
+    <div class="row" style="padding-top: 20px; height: auto">
+      <div class="col-sm-5" style="text-align: center;">
+        <ul class="list-group">
+          <div class="container" style="padding-top: 20px; padding-bottom: 20px">
+            <li class="list-group-item" id="title">
+              <!-- detail title -->
+              <h5 id="detail-title" style="margin-bottom: 0px"></h5>
+            </li>
+            <li class="list-group-item">
+              <div id="detail-poster"></div>
+            </li>
+            <li class="list-group-item" style="text-align: left">
+              <small id="detail-rating"></small>
+            </li>
+            <li class="list-group-item" style="text-align: justify">
+              <small id="detail-overview"></small>
+            </li>
+            <li class="list-group-item" style="text-align: left">
+              <small id="detail-release"></small>
+            </li>
+          </div>
+        </ul>
+      </div>
+      <div class="col-sm-7" style="text-align: center;">
+        <ul class="list-group">
+          <!-- trailer video -->
+          <div class="container" style="padding-top: 20px; padding-bottom: 20px">
+            <li class="list-group-item">
+              <h5 style="margin-bottom: 0px">Trailer & Soundtrack</h5>
+            </li>
+            <li class="list-group-item">
+              <div id="player" style="width: 500px"></div>
+            </li>
+            <li class="list-group-item">
+              <!-- Tampilan player song -->
+              <div class="soundtrack"></div>
+
+              <!-- message -->
+              <div class="message"></div>
+              <!-- error -->
+              <div class="error"></div>
+            </li>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- One Movie -->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div>
+          <ul id="allMovies3"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- All Movies -->
+  <div class="container">
+    <div class="row" id="allMovies">
+    </div>
+  </div>
+
+</body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="./js/youtube.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="./js/youtube-main.js"></script>
+<script src="./js/main.js"></script>
+
+<!-- Script -->
+<!--main.js-->
+<script src="./js/itunes-main.js"></script>
+<!--google signin API-->
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<!-- google-auth -->
+<script src="./js/google-auth.js"></script>
+
+</html>
