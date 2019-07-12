@@ -1,30 +1,31 @@
 const baseUrl = " http://localhost:3000"
 var movies = []
 
-$(document).ready(function(){
-    $('#detail').hide()
-    
 
-    $('#btnShow').click(function(){
-      event.preventDefault()
-      $('#allMovies').show()
+$(document).ready(function () {
+  $('#detail').hide()
+
+
+  $('#btnShow').click(function () {
+    event.preventDefault()
+    $('#allMovies').show()
+  })
+  $('#btnHide').click(function () {
+    event.preventDefault()
+    $('#allMovies').hide()
+  })
+  $('#btnNowPlaying').click(function () {
+    event.preventDefault()
+    $.ajax({
+      method: "GET",
+      url: `${baseUrl}/omdb/get`
     })
-    $('#btnHide').click(function(){
-      event.preventDefault()
-      $('#allMovies').hide()
-    })
-    $('#btnNowPlaying').click(function () {
-        event.preventDefault()
-        $.ajax({
-            method: "GET",
-            url: `${baseUrl}/omdb/get`
-          })
-          .done(function(response) {
-            // movies = response.results
-            console.log(response.results)
-            response.results.forEach(element => {
-              $('#allMovies').append(
-                  `
+      .done(function (response) {
+        // movies = response.results
+        console.log(response.results)
+        response.results.forEach(element => {
+          $('#allMovies').append(
+            `
                   <div class="col-4 card">
                     <medium>Title : ${element.title}</medium><br>
                     <small>Year: ${element.release_date}</small><br>
@@ -33,22 +34,22 @@ $(document).ready(function(){
                     <small>${element.overview}</small>
                   </div>
                 `
-              )
-            });
-          });
+          )
+        });
+      });
+  })
+  $('#btnPopular').click(function () {
+    event.preventDefault()
+    $.ajax({
+      method: "GET",
+      url: `${baseUrl}/omdb/getPopular`
     })
-    $('#btnPopular').click(function () {
-      event.preventDefault()
-      $.ajax({
-          method: "GET",
-          url: `${baseUrl}/omdb/getPopular`
-        })
-        .done(function(response) {
-          console.log(response.results)
+      .done(function (response) {
+        console.log(response.results)
 
-          response.results.forEach(element => {
-            $('#allMovies').append(
-                `
+        response.results.forEach(element => {
+          $('#allMovies').append(
+            `
                 <div class="col-3 card" >
                   <medium id="title">Title : ${element.title}</medium><br>
                   <small>Year: ${element.release_date}</small><br>
@@ -56,29 +57,32 @@ $(document).ready(function(){
                   <small>Rating: ${element.vote_average}</small><br>
                   <small>Overview: ${element.overview}</small>
                 </div>`
-            )
-            $('#desc').hide()
-            $('#title').click(function() {
-              event.preventDefault()
-              $('#desc').show()
-            })
-          });
+          )
+          $('#desc').hide()
+          $('#title').click(function () {
+            event.preventDefault()
+            $('#desc').show()
+          })
         });
+      });
+  })
+  $('#btnSearch').click(function () {
+    event.preventDefault()
+    const queryBoxMovie = $('#searchMovie').val()
+    $.ajax({
+      method: "GET",
+      url: `${baseUrl}/omdb/search?title=${queryBoxMovie}`,
+      headers: {
+        token: localStorage.getItem("token")
+    }
     })
-    $('#btnSearch').click(function () {
-      event.preventDefault()
-      const queryBoxMovie = $('#searchMovie').val()
-      $.ajax({
-          method: "GET",
-          url: `${baseUrl}/omdb/search?title=${queryBoxMovie}`
-      })
       //gw belom search
-        .done(function(response) {
-          console.log(response)
-          movies = response
-          response.forEach((element, i) => {
-              $('#allMovies').append(
-                `
+      .done(function (response) {
+        console.log(response)
+        movies = response
+        response.forEach((element, i) => {
+          $('#allMovies').append(
+            `
                 <div class="col-4 card"">
                   <ul class="list-group">
                     <div class="container" style="padding-top: 20px; padding-bottom: 20px">
@@ -99,15 +103,15 @@ $(document).ready(function(){
                     </div>
                   </ul>
                 </div>`
-            )
-            $('#desc').hide()
-            $('#title').click(function() {
-              event.preventDefault()
-              $('#desc').show()
-            })
-          });
-          });
-    })
+          )
+          $('#desc').hide()
+          $('#title').click(function () {
+            event.preventDefault()
+            $('#desc').show()
+          })
+        });
+      });
+  })
 })
 let title
 function showDetail(index) {
@@ -124,9 +128,38 @@ function showDetail(index) {
       $('#detail-overview').append(`${movies[i].overview}`)
       $('#detail-release').append(`<b>Release Date:</b> ${movies[i].release_date}`)
       title = movies[i].title
+      axios.post(`http://localhost:3000/itunes/music/search`, {
+        term: `${title}+soundtrack`
+      })
+        .then(response => {
+          if (response.data.results.length > 0) {
+            $('.soundtrack').empty()
+            $('.soundtrack').append(
+              `
+                <h3>Soundtrack is now playing...</h3>
+                <audio controls src="${response.data.results[0].previewUrl}">
+                </audio>    
+                `)
+          } else {
+            $('.soundtrack').empty()
+            $('.soundtrack').append(
+              `
+                <h3>Currently no soundtrack for this movie.</h3>
+                `
+            )
+          }
+        })
+        .catch(err => {
+          $('.error').empty()
+          $('.error').append(
+            `
+            <p>Unauthorized process.</p>
+            `
+          )
+        })
       // axios.post(`http://localhost:3000/api/youtube`, { title })
       console.log(title)
-      
+
     }
   }
   event.preventDefault()

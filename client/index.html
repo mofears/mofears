@@ -2,6 +2,8 @@
 <html lang="en">
 
 <head>
+  <meta name="google-signin-client_id"
+    content="800616839115-v04olo2jcipsoicrkasli0lpd603qnsn.apps.googleusercontent.com">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -21,6 +23,12 @@
           <label class="label-icon" for="search" id="click"><i class="material-icons">search</i></label>
           <i class="material-icons">close</i>
   </nav>
+  <div class="container">
+      <!-- Button Login -->
+      <div class="g-signin2" data-onsuccess="onSignIn"></div>
+      <a href="#" onclick="signOut();">Sign out</a>
+    </div>
+  
   <!-- seach movie -->
   <div class="container">
     <input id="searchMovie" type="text" class="form-control" placeholder="search by movie name">
@@ -61,6 +69,15 @@
             <li class="list-group-item">
               <div id="player" style="width: 500px"></div>
             </li>
+            <li class="list-group-item">
+              <!-- Tampilan player song -->
+              <div class="soundtrack"></div>
+
+              <!-- message -->
+              <div class="message"></div>
+              <!-- error -->
+              <div class="error"></div>
+            </li>
           </div>
         </ul>
       </div>
@@ -91,5 +108,13 @@
   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script src="./js/youtube-main.js"></script>
 <script src="./js/main.js"></script>
+
+<!-- Script -->
+<!--main.js-->
+<script src="./js/itunes-main.js"></script>
+<!--google signin API-->
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<!-- google-auth -->
+<script src="./js/google-auth.js"></script>
 
 </html>

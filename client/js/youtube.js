@@ -12,7 +12,9 @@ function onYouTubeIframeAPIReady() {
   $('#click').click(function () {
     let title = $('#search').val()
     console.log(title)
-    axios.post(`http://localhost:3000/api/youtube`, { title })
+    axios.post(`http://localhost:3000/api/youtube`, { title, headers: {
+      token: localStorage.getItem("token")
+  }})
     .then(({ data }) => {
       player = new YT.Player('player', {
         height: '390',
