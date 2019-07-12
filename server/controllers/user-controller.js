@@ -35,6 +35,7 @@ class UserController {
             })
             .then(([payload]) => {
                 let token = jwt.signToken(payload)
+                // console.log(token, 'token di server<<<<<<<<<<<<<<<')
                 res.status(200).json(token)
             })
             .catch(err => {
@@ -43,7 +44,7 @@ class UserController {
     }
 
     static logout(req, res, next) {
-        req.headers.token = ''
+        req.headers.token = null
         res.status(200).json('Successfuly logged out.')
     }
 

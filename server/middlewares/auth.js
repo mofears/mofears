@@ -2,6 +2,7 @@ const jwtoken = require('../helpers/jwt')
 
 module.exports = {
     authentication(req, res, next) {
+        console.log(req.headers.token, 'token di authentication <<<<<<<<<')
         try {
             var decoded = jwtoken.verifyToken(req.headers.token)
             req.headers.decoded = decoded
