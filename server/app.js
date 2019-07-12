@@ -6,10 +6,11 @@ const express = require('express');
 const cors = require('cors')
 const app = express();
 const port = process.env.PORT || 3000
+// const youtubeApi =
+const omdbApi = require('./routes/omdb') 
 const errorHandlers = require('./middlewares/error-handlers');
 const youtubeApi = require('./routes/youtube');
 // const youtubeApi =
-const omdbApi = require('./routes/omdb') 
 
 // mongoose.connect('mongodb://localhost/HacktivGit', { useNewUrlParser: true })
 

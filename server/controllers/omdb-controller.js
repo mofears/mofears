@@ -6,7 +6,7 @@ const mov = axios.create({
 
 class OmdbController{
     static get(req, res){
-        mov.get(`/3/movie/now_playing?api_key=1b8ff859a98498062adad4ed8f268b6b&language=en-US&page=1`)
+        mov.get(`/3/movie/now_playing?api_key=${process.env.MOVIE_APIKEY}&language=en-US&page=1`)
         .then(function ({ data }) {
             res.status(200).json(data)
         })
@@ -20,7 +20,7 @@ class OmdbController{
         })
     }
     static getPopular(req, res){
-        mov.get(`/3/movie/popular?api_key=1b8ff859a98498062adad4ed8f268b6b&language=en-US&page=1`)
+        mov.get(`/3/movie/popular?api_key=${process.env.MOVIE_APIKEY}&language=en-US&page=1`)
         .then(function ({ data }) {
             res.status(200).json(data)
         })
@@ -36,30 +36,8 @@ class OmdbController{
     static searchMovie(req, res){
         // console.log(req.query.title)
         const find = req.query.title
-        mov.get('/3/movie/now_playing?api_key=1b8ff859a98498062adad4ed8f268b6b&language=en-US&page=1')
-        .then(function ({ data }) {
-            if(!find){
-                throw new Error
-            }else{
-                for (let i = 0; i < data.results.length; i++) {
-                    if(data.results[i].title.toLowerCase().includes(find.toLowerCase())){
-                        res.status(200).json(data.results[i])
-                    }
-                }
-            }
-        })
-        .catch(function (error) {
-            console.log(error);
-            res.status(404).json({
-                message: 'Not Found!',
-                resource: 'controller omdb searchMovie!!!',
-                data: error
-            })
-        })
-    }
-    static search(req, res){
-        const find = req.query.title
-        mov.get(`/3/movie/${id_movie}/similar?api_key=${process.env.MOVIE_APIKEY}&language=en-US&page=1`)
+        // https://api.themoviedb.org/3/search/movie?api_key=1b8ff859a98498062adad4ed8f268b6b&language=en-US&query=spiderman&page=1&include_adult=false
+        mov.get(`/3/search/movie?api_key=${process.env.MOVIE_APIKEY}&language=en-US&query=${find}&page=1&include_adult=false`)
         .then(function ({ data }) {
             const dataResult = []
             if(!find){

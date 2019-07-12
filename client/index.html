@@ -1,22 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>Mofears</title>
 </head>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <!-- Google Sign In -->
-    <meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id" content="192469268723-r7862o9p9qt49uocjgc7bvqk1ijgjts6.apps.googleusercontent.com">
-    <title>Mofears</title>
-</head>
 <body>
+
   <nav style="background-color: #145374">
     <a href="#" class="brand-logo" style="padding-left: 20px">Mofears</a>
     <div class="nav-wrapper" style="padding-left: 725px">
@@ -25,76 +20,43 @@
           <input id="search" type="search" required>
           <label class="label-icon" for="search" id="click"><i class="material-icons">search</i></label>
           <i class="material-icons">close</i>
-        </div>
-    </div>
-<<<<<<< HEAD
-    <br><br>
-
-    <!-- One Movie -->
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <div>
-                    <ul id="allMovies3"></ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- All Movies -->
-    <div class="container">
-        <div class="row" id="allMovies">
-        </div>
-        <div class="row" id="allMovies2">
-        </div>
-    </div>
-
-
-    <!-- All Script -->
-<<<<<<< HEAD
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script
-    src="https://code.jquery.com/jquery-3.4.1.js"
-    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-    crossorigin="anonymous"></script>
-    <script src="./main.js"></script>
-=======
-    <!-- apiyoutube -->
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="./js/youtube.js"></script>
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
-    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-    <script src="./js/youtube-main.js"></script>
-    <!-- apimovie -->
-    <script src="./js/main.js"></script>
->>>>>>> benerin search +tampilan
-=======
   </nav>
-
+  <!-- seach movie -->
   <div class="container">
-    <div class="row" style="padding-top: 20px; height: 500px">
-      <div class="col-sm-5" style="border: 1px solid black; text-align: center;">
+    <input id="searchMovie" type="text" class="form-control" placeholder="search by movie name">
+    <button class="btn btn-sm btn-outline-info" type="submit" id="btnSearch">Search</button>
+  </div>
+
+  <div class="container" id="detail">
+    <div class="row" style="padding-top: 20px; height: auto">
+      <div class="col-sm-5" style="text-align: center;">
         <ul class="list-group">
-          <!-- trailer video -->
           <div class="container" style="padding-top: 20px; padding-bottom: 20px">
             <li class="list-group-item" id="title">
-              <!-- title -->
-              <h3>Title</h3>
+              <!-- detail title -->
+              <h5 id="detail-title" style="margin-bottom: 0px"></h5>
             </li>
             <li class="list-group-item">
-              <div class="container">
-                <h3>Poster</h3>
-              </div>
+              <div id="detail-poster"></div>
+            </li>
+            <li class="list-group-item" style="text-align: left">
+              <small id="detail-rating"></small>
+            </li>
+            <li class="list-group-item" style="text-align: justify">
+              <small id="detail-overview"></small>
+            </li>
+            <li class="list-group-item" style="text-align: left">
+              <small id="detail-release"></small>
             </li>
           </div>
         </ul>
       </div>
-      <div class="col-sm-7" style="border: 1px solid black; text-align: center;">
+      <div class="col-sm-7" style="text-align: center;">
         <ul class="list-group">
           <!-- trailer video -->
           <div class="container" style="padding-top: 20px; padding-bottom: 20px">
             <li class="list-group-item">
-              <h3>Trailer & Soundtrack</h3>
+              <h5 style="margin-bottom: 0px">Trailer & Soundtrack</h5>
             </li>
             <li class="list-group-item">
               <div id="player"></div>
@@ -105,8 +67,32 @@
     </div>
   </div>
 
->>>>>>> youtuebe, frame, and layout
+  <!-- trailer video -->
+  <div id="player"></div>
+
+  <!-- One Movie -->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div>
+          <ul id="allMovies3"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- All Movies -->
+  <div class="container">
+    <div class="row" id="allMovies">
+    </div>
+  </div>
+
 </body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="./js/youtube.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="./js/youtube-main.js"></script>
+<script src="./js/main.js"></script>
+
 </html>
-
-
