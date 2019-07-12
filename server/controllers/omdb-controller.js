@@ -4,6 +4,8 @@ const mov = axios.create({
     // timeout: 1000,
 });
 
+const sort = require('../helpers/sort.js')
+
 class OmdbController{
     static get(req, res){
         mov.get(`/3/movie/now_playing?api_key=${process.env.MOVIE_APIKEY}&language=en-US&page=1`)
@@ -48,7 +50,7 @@ class OmdbController{
                         dataResult.push(data.results[i])
                     }
                 }
-                res.status(200).json(dataResult)
+                res.status(200).json(sort(dataResult))
             }
         })
         .catch(function (error) {
