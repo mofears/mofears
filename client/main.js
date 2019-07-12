@@ -22,13 +22,13 @@ $(document).ready(function(){
             response.results.forEach(element => {
               $('#allMovies').append(
                   `
-                    <li class="list-group-item">
-                      <medium>Title : ${element.title}</medium><br>
-                      <small>Year: ${element.release_date}</small><br>
-                      <img src="https://image.tmdb.org/t/p/w500/${element.poster_path}" width="200" height="400" class="rounded float-left" alt="..."><br>
-                      <small>Rating: ${element.vote_average}</small>
-                      <p>${element.overview}</p>
-                    </li>
+                  <div class="col-4 card">
+                    <medium>Title : ${element.title}</medium><br>
+                    <small>Year: ${element.release_date}</small><br>
+                    <img class="card-img-top" src="https://image.tmdb.org/t/p/w500/${element.poster_path}" alt="Card image cap">
+                    <small>Rating: ${element.vote_average}</small><br>
+                    <small>${element.overview}</small>
+                  </div>
                 `
               )
             });
@@ -45,15 +45,19 @@ $(document).ready(function(){
           response.results.forEach(element => {
             $('#allMovies2').append(
                 `
-                  <li class="list-group-item">
-                    <medium>Title : ${element.title}</medium><br>
-                    <small>Year: ${element.release_date}</small><br>
-                    <img src="https://image.tmdb.org/t/p/w500/${element.poster_path}" width="200" height="400" class="rounded float-left" alt="..."><br>
-                    <small>Rating: ${element.vote_average}</small>
-                    <p>${element.overview}</p>
-                  </li>
-              `
+                <div class="col-4 card" >
+                  <medium id="title">Title : ${element.title}</medium><br>
+                  <small>Year: ${element.release_date}</small><br>
+                  <img class="card-img-top" src="https://image.tmdb.org/t/p/w500/${element.poster_path}" alt="Card image cap">
+                  <small>Rating: ${element.vote_average}</small><br>
+                  <small>Overview: ${element.overview}</small>
+                </div>`
             )
+            $('#desc').hide()
+            $('#title').click(function() {
+              event.preventDefault()
+              $('#desc').show()
+            })
           });
         });
     })
@@ -67,15 +71,19 @@ $(document).ready(function(){
         .done(function(response) {
               $('#allMovies3').append(
                 `
-                  <li class="list-group-item">
-                    <medium> Title : ${response.title}</medium><br>
-                    <small> Year: ${response.release_date}</small><br>
-                    <img src="https://image.tmdb.org/t/p/w500/${response.poster_path}" width="100" height="200" class="rounded float-left" alt="..."><br>
-                    <small> Rating: ${response.vote_average}</small>
-                    <p>${response.overview}</p>
-                  </li>
-              `
+                <div class="class="col-4 card"">
+                  <medium id="title">Title : ${response.title}</medium><br>
+                  <small>Year: ${response.release_date}</small><br>
+                  <img class="card-img-top" src="https://image.tmdb.org/t/p/w500/${response.poster_path}" alt="Card image cap">
+                  <small>Rating: ${response.vote_average}</small><br>
+                  <small id="desc">${response.overview}</small>
+                </div>`
             )
+            $('#desc').hide()
+            $('#title').click(function() {
+              event.preventDefault()
+              $('#desc').show()
+            })
           });
-  })
+    })
 })
