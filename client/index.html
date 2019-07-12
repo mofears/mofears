@@ -7,32 +7,40 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="google-signin-client_id"
         content="800616839115-v04olo2jcipsoicrkasli0lpd603qnsn.apps.googleusercontent.com">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>Mofears</title>
 </head>
 
 <body>
+    <!-- Button Login -->
     <div class="g-signin2" data-onsuccess="onSignIn"></div>
     <a href="#" onclick="signOut();">Sign out</a>
 
+    <!-- Click Film Sementara -->
     <h1>Title</h1>
-    <span class="title">Pulp Fiction</span><br>
+    <span class="title">Bumblebee</span><br>
     <span class="stop">Stop</span>
 
-    <div class="song"></div>
-
+    <!-- Tampilan player song -->
     <div class="soundtrack"></div>
 
+    <!-- message -->
+    <div class="message"></div>
+    <!-- error -->
+    <div class="error"></div>
 
-
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- Script -->
     <!--axios-->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!--jquery-->
     <script src="https://code.jquery.com/jquery-3.4.1.js"
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-    <!--jquery-->
-    <script src="./js/itunes-main.js"></script>
     <!--main.js-->
+    <script src="./js/itunes-main.js"></script>
+    <!--google signin API-->
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <!--google login-->
+    <!-- google-auth -->
     <script src="./js/google-auth.js"></script>
 </body>
 

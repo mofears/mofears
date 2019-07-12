@@ -1,24 +1,26 @@
 const baseUrl = 'http://localhost:3000'
 let iTunesAPI = axios.create({
     baseURL: 'https://localhost:3000',
+    headers: {
+        token: localStorage.getItem("token")
+    }
 })
 
 $(document).ready(function () {
 
-    $('.title').click(function () {
-
+    $('.title').click(function (event) {
+        event.preventDefault()
         let title = $(this).html().split(' ').join('+')
         iTunesAPI.post(`${baseUrl}/itunes/music/search`, {
                 term: `${title}+soundtrack`
             })
             .then(response => {
-                // console.log(response)
                 if (response.data.results.length > 0) {
                     $('.soundtrack').empty()
                     $('.soundtrack').append(
                         `
                         <h3>Soundtrack is now playing...</h3>
-                        <audio autoplay src="${response.data.results[0].previewUrl}">
+                        <audio autoplay controls src="${response.data.results[0].previewUrl}">
                         </audio>    
                         `)
                 } else {
@@ -29,10 +31,14 @@ $(document).ready(function () {
                         `
                     )
                 }
-                // console.log(response.data.results[0].previewUrl)
             })
             .catch(err => {
-                console.log(err)
+                $('.error').empty()
+                $('.error').append(
+                    `
+                    <p>Unauthorized process.</p>
+                    `
+                )
             })
     })
 

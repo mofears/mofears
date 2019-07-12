@@ -5,7 +5,7 @@ function onSignIn(googleUser) {
             token: id_token
         })
         .then(response => {
-
+            localStorage.setItem('token', response.data)
         })
         .catch(err => {
             console.log(err)
@@ -23,4 +23,19 @@ function signOut() {
     auth2.signOut().then(function () {
         console.log('User signed out.');
     });
+
+    axios.post('http://localhost:3000/user/logout')
+        .then(response => {
+            localStorage.removeItem('token')
+            $('.soundtrack').empty()
+            $('.message').empty()
+            $('.message').append(
+                `
+                <p>${JSON.stringify(response.data)}</p>
+                `
+            )
+        })
+        .catch(err => {
+            console.log(err)
+        })
 }
