@@ -68,15 +68,18 @@ $(document).ready(function(){
           method: "GET",
           url: `${baseUrl}/omdb/search?title=${queryBoxMovie}`
       })
+      //gw belom search
         .done(function(response) {
-              $('#allMovies3').append(
+          console.log(response)
+          response.forEach(element => {
+              $('#allMovies').append(
                 `
-                <div class="class="col-4 card"">
-                  <medium id="title">Title : ${response.title}</medium><br>
-                  <small>Year: ${response.release_date}</small><br>
-                  <img class="card-img-top" src="https://image.tmdb.org/t/p/w500/${response.poster_path}" alt="Card image cap">
-                  <small>Rating: ${response.vote_average}</small><br>
-                  <small id="desc">${response.overview}</small>
+                <div class="col-4 card"">
+                  <medium id="title">Title : ${element.title}</medium><br>
+                  <small>Year: ${element.release_date}</small><br>
+                  <img class="card-img-top" src="https://image.tmdb.org/t/p/w500/${element.poster_path}" alt="Card image cap">
+                  <small>Rating: ${element.vote_average}</small><br>
+                  <small id="desc">${element.overview}</small>
                 </div>`
             )
             $('#desc').hide()
@@ -84,6 +87,7 @@ $(document).ready(function(){
               event.preventDefault()
               $('#desc').show()
             })
+          });
           });
     })
 })
