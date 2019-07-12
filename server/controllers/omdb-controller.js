@@ -61,14 +61,16 @@ class OmdbController{
         const find = req.query.title
         mov.get(`/3/movie/${id_movie}/similar?api_key=${process.env.MOVIE_APIKEY}&language=en-US&page=1`)
         .then(function ({ data }) {
+            const dataResult = []
             if(!find){
                 throw new Error
             }else{
                 for (let i = 0; i < data.results.length; i++) {
                     if(data.results[i].title.toLowerCase().includes(find.toLowerCase())){
-                        res.status(200).json(data.results[i])
+                        dataResult.push(data.results[i])
                     }
                 }
+                res.status(200).json(dataResult)
             }
         })
         .catch(function (error) {
